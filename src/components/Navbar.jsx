@@ -6,7 +6,7 @@ const Navbar = ({ isLoggedIn }) => {
     <header className="navbar">
       <div className="Secciones">
         <ul>
-          <li><Link to="/">Inicio</Link></li>
+          <li><Link to="/">Inicio Inicio</Link></li>
           <li><Link to="/busqueda">Estado #1</Link></li>
           <li><Link to="/pedagogico">Estado #2</Link></li>
           <li><Link to="/terapeutico">Estado #3</Link></li>
