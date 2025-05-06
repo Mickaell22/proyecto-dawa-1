@@ -1,0 +1,225 @@
+/* Estilos base */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+html {
+    font-size: 20px;
+}
+
+/* Header */
+.box_presentacion {
+    width: 100%;
+    height: 400px;
+    background-image: url('https://global.redmagic.gg/cdn/shop/files/8_d7524155-11d2-4f14-a5dd-dd24c66b6360_600x600.png?v=1745412731');
+    background-position: center;
+    background-color: #6b4e91;
+    margin: 0;
+    text-align: center;
+    background-attachment: fixed;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.box_presentacion_opaco {
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(rgba(107, 78, 145, 0.8), rgba(107, 78, 145, 0.4), transparent);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    display: inline-block;
+    border-bottom: 7px solid #f3a712;
+    color: #ffffff;
+    margin: 0;
+    padding: 10px 30px;
+    border-radius: 20px;
+    width: auto;
+    height: auto;
+    font-size: 3.5em;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Menú de navegación */
+.navbar {
+    width: 100%;
+    position: relative;
+    z-index: 20;
+}
+
+.Secciones {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.Secciones ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-shadow: 0 0 5px #000A;
+}
+
+.Secciones ul li {
+    flex: 1;
+    text-align: center;
+}
+
+.Secciones ul li a {
+    display: block;
+    background-color: #f9e2ae;
+    border: 2px solid #6b4e91;
+    padding: 15px;
+    text-decoration: none;
+    color: #4a4a4a;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.Secciones ul li a:hover {
+    background-color: #6b4e91;
+    border: 0;
+    border-bottom: 5px solid #f3a712;
+    font-weight: bold;
+    color: white;
+}
+
+/* Main content */
+.main {
+    min-height: 50vh;
+    padding: 2rem 0;
+    background-color: #f8f9fa;
+}
+
+.content-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(107, 78, 145, 0.1);
+    line-height: 1.6;
+}
+
+.content-container h2 {
+    color: #6b4e91;
+    margin-bottom: 1rem;
+    font-size: 1.8em;
+}
+
+.content-container p {
+    margin-bottom: 1rem;
+    color: #4a4a4a;
+}
+
+/* Footer */
+.pie {
+    width: 100%;
+    background-color: #6b4e91;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 20px 20px;
+    background-color: #6b4e91;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    background: linear-gradient(#8a6fb1, #6b4e91);
+    padding: 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 7px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-section h4 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    color: #ffffff;
+    border-bottom: 2px solid #f3a712;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.footer-section p, 
+.footer-section a {
+    color: #ffffff;
+    font-size: 1.2em;
+    padding: 5px 20px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section a {
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    display: block;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #f3a712;
+    padding-left: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.social-links, 
+.participantes {
+    padding: 0 20px 20px 20px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+    
+    .box_presentacion, 
+    .box_presentacion_opaco {
+        height: auto;
+        min-height: 300px;
+    }
+    
+    .titulo {
+        font-size: 2.5em;
+        margin: 0;
+    }
+    
+    .Secciones ul {
+        flex-direction: column;
+    }
+    
+    .Secciones ul li {
+        margin-bottom: 5px;
+    }
+    
+    .content-container {
+        width: 90%;
+        padding: 1.5rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
