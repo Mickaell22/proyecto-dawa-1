@@ -4,6 +4,7 @@ const Home = () => {
   return (
     <main className="main">
       <div className="content-container">
+
         <h2>Bienvenido a Tía Glenda</h2>
         <p>Centro de Acompañamiento Pedagógico y Terapéutico</p>
         <p>Contenido del sitio web</p>
@@ -12,9 +13,11 @@ const Home = () => {
           vitae corporis, eum eaque suscipit, neque voluptates delectus, beatae in. Magnam sapiente 
           molestias nobis molestiae atque, deserunt quae.
         </p>
+
       </div>
     </main>
   );
 };
 
 export default Home;
+

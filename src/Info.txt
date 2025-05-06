@@ -3,3 +3,13 @@ Instalar dependencias
 npm install react-router-dom
 cd client
 npm start
+
+Indicacions MICKA
+
+Instalar dependencias
+
+
+cd client
+npm install react-router-dom
+npm start
+
