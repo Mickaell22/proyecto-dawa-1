@@ -19,6 +19,15 @@ const Footer = () => {
             <a href="https://www.linkedin.com/in/mickaell-moran-vera-ba421a2a3/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
         </div>
+        <div className="footer-section">
+          <h4>Participantes</h4>
+          <div className="participantes">
+            <p>MORAN VERA MICKAELL ADRIAN</p>
+            <p>SALAZAR MEJIA MARCO ANTONIO</p>
+            <p>TROYA GARZON GEANCARLOS</p>
+            <p>MALAVE SORIANO KRISTY NICOLE</p>
+          </div>
+        </div>
       </div>
     </footer>
   );
