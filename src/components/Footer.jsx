@@ -22,10 +22,10 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Participantes</h4>
           <div className="participantes">
-            <p>MORAN VERA MICKAELL ADRIAN</p>
-            <p>SALAZAR MEJIA MARCO ANTONIO</p>
-            <p>TROYA GARZON GEANCARLOS</p>
-            <p>MALAVE SORIANO KRISTY NICOLE</p>
+            <p>Moran Vera Mickaell Adrian</p>
+            <p>Salazar Mejia Marco Antonio</p>
+            <p>Troya Garzon Geancarlos</p>
+            <p>Malave Soriano Kristy Nicole</p>
           </div>
         </div>
       </div>
