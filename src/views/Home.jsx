@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 
-const Home = () => {
+const Home = ({ changeTitle }) => {
   return (
     <main className="main">
       <div className="content-container">

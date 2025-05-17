@@ -54,6 +54,8 @@ html {
     width: 100%;
     position: relative;
     z-index: 20;
+    padding: 0;
+    margin-bottom: 25px;
 }
 
 .Secciones {
@@ -121,8 +123,11 @@ html {
     color: #4a4a4a;
 }
 
+
+
 /* Footer */
 .pie {
+    margin-top: 25px;
     width: 100%;
     background-color: #6b4e91;
 }
@@ -157,7 +162,7 @@ html {
     margin-top: 10px;
 }
 
-.footer-section p, 
+.footer-section p,
 .footer-section a {
     color: #ffffff;
     font-size: 1.2em;
@@ -183,7 +188,7 @@ html {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.social-links, 
+.social-links,
 .participantes {
     padding: 0 20px 20px 20px;
 }
@@ -193,31 +198,31 @@ html {
     html {
         font-size: 16px;
     }
-    
-    .box_presentacion, 
+
+    .box_presentacion,
     .box_presentacion_opaco {
         height: auto;
         min-height: 300px;
     }
-    
+
     .titulo {
         font-size: 2.5em;
         margin: 0;
     }
-    
+
     .Secciones ul {
         flex-direction: column;
     }
-    
+
     .Secciones ul li {
         margin-bottom: 5px;
     }
-    
+
     .content-container {
         width: 90%;
         padding: 1.5rem;
     }
-    
+
     .footer-content {
         grid-template-columns: 1fr;
         gap: 15px;

@@ -1,10 +1,10 @@
 import React from "react";
 
-const Header = () => {
+const Header = ({ title = "Aplicación de telefonos" }) => {
   return (
     <div className="box_presentacion">
       <div className="box_presentacion_opaco">
-        <h1 className="titulo">Aplicacion de telefonos</h1>
+        <h1 className="titulo">{title}</h1>
       </div>
     </div>
   );

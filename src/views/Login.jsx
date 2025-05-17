@@ -1,10 +1,30 @@
-// src/views/Login.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { loginUser } from '../controllers/frontController';
+import { 
+  Container, 
+  Row, 
+  Col, 
+  Card, 
+  CardHeader, 
+  CardBody, 
+  Form, 
+  FormGroup, 
+  Label, 
+  Input, 
+  Button, 
+  Alert,
+  Spinner
+} from 'reactstrap';
 
+const Login = ({ changeTitle }) => {
+  useEffect(() => {
+    changeTitle("Bienvenido de vuelta! :)");
+    return () => {
+      changeTitle("Aplicación de reparación de teléfonos");
+    };
+  }, [changeTitle]);
 
-const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -41,7 +61,6 @@ const Login = () => {
       if (result.success) {
         // Redireccionar al inicio
         navigate('/');
-        // Forzar recarga para actualizar la barra de navegación
         window.location.reload();
       } else {
         setError(result.message);
@@ -54,53 +73,68 @@ const Login = () => {
   };
   
   return (
-    <div className="login-container">
-      <div className="login-header">
-        <h2>Iniciar Sesión</h2>
-      </div>
-      
-      {error && <div className="error-message">{error}</div>}
-      
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Ingrese su email"
-            disabled={loading}
-          />
-        </div>
-        
-        <div className="form-group">
-          <label htmlFor="password">Contraseña</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Ingrese su contraseña"
-            disabled={loading}
-          />
-        </div>
-        
-        <button
-          type="submit"
-          className="btn-primary"
-          disabled={loading}
-        >
-          {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-        </button>
-        
-        <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          ¿No tienes una cuenta? <Link to="/register">Registrarse</Link>
-        </div>
-      </form>
-    </div>
+    <Container className="mt-4">
+      <Row className="justify-content-center">
+        <Col md={6}>
+          <Card className="shadow-sm">
+            <CardHeader className="bg-primary text-white text-center">
+              <h3 className="mb-0">Iniciar Session</h3>
+            </CardHeader>
+            <CardBody>
+              {error && <Alert color="danger">{error}</Alert>}
+              
+              <Form onSubmit={handleSubmit}>
+                <FormGroup>
+                  <Label for="email">Email</Label>
+                  <Input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Ingrese su email"
+                    disabled={loading}
+                  />
+                </FormGroup>
+                
+                <FormGroup>
+                  <Label for="password">Contraseña</Label>
+                  <Input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="Ingrese su contraseña"
+                    disabled={loading}
+                  />
+                </FormGroup>
+                
+                <Button
+                  type="submit"
+                  color="primary"
+                  block
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <Spinner size="sm" className="me-2" />
+                      Iniciando sesión...
+                    </>
+                  ) : (
+                    'Ingresar'
+                  )}
+                </Button>
+                
+                <div className="text-center mt-3">
+                  ¿No tienes una cuenta? <Link to="/register" className="text-primary">Registrarse</Link>
+                </div>
+              </Form>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
