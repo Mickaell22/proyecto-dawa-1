@@ -11,7 +11,16 @@ const api = axios.create({
   }
 });
 
-// AUXILIAR
+
+//        U                      /*  
+//        S                      /*  
+//        U                      /*  
+//        A                      /*  
+//        R                      /*  
+//        I                      /*  
+//        O                      /*  
+
+// registrar usuario
 export const registerUser = async (userData) => {
   try {
     const response = await api.post('/users', userData);
@@ -70,7 +79,7 @@ export const getCurrentUser = () => {
   return userStr ? JSON.parse(userStr) : null;
 };
 
-//todos los usuarios
+// AUXILIAR
 export const getUsers = async () => {
   try {
     const response = await api.get('/users');
@@ -101,6 +110,33 @@ export const getUserById = async (id) => {
     };
   }
 };
+
+
+
+//        R                      /*  
+//        E                      /*  
+//        P                      /*  
+//        U                      /*  
+//        E                      /*  
+//        S                      /*  
+//        T                      /*  
+//        O                      /*  
+export const registerRepuesto = async (RepuestoData) => {
+  try {
+    const response = await api.post('/users', RepuestoData);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: error.response?.data?.message || 'Error al registrar usuario'
+    };
+  }
+};
+
+
 
 export default {
   registerUser,

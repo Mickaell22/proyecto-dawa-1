@@ -26,9 +26,6 @@ const Navbar = ({ isLoggedIn }) => {
               <li style={{ float: 'right' }}>
                 <Link to="/register">Registrarse</Link>
               </li>
-              <li style={{ float: 'right' }}>
-                <Link to="/contacto">Contactanos</Link>
-              </li>
             </>
           )}
         </ul>
