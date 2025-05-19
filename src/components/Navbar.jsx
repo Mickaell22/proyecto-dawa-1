@@ -19,7 +19,7 @@ const Navbar = ({ isLoggedIn }) => {
           )}
           
           {/* Facturacion y libre */}
-          <li><Link to="/libre4">Libre 4</Link></li>
+          <li><Link to="/factura">Factura</Link></li>
           <li><Link to="/libre5">Libre 5</Link></li>
           
           {/* Opciones de autenticación */}

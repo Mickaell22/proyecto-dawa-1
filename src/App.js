@@ -17,6 +17,7 @@ import Login from './views/Login.jsx';
 import Register from './views/Register.jsx';
 import RepuestosList from './views/RepuestosList.jsx';
 import RepuestoForm from './views/RepuestoForm.jsx';
+import Tabla from './views/Tabla.jsx';
 
 // Rutas solo para administrrador
 const AdminRoute = ({ children }) => {
@@ -68,7 +69,7 @@ function App() {
           
           {/* rutas posbiles, Diagnostico , factura, libre */}
           <Route path="/diagnostico" element={<Home changeTitle={() => changeHeaderTitle("Diagnóstico")} />} />
-          <Route path="/libre4" element={<Home changeTitle={() => changeHeaderTitle("Libre 4")} />} />
+          <Route path="/factura" element={<Tabla changeTitle={() => changeHeaderTitle("Factura")} />} />
           <Route path="/libre5" element={<Home changeTitle={() => changeHeaderTitle("Libre 5")} />} />
           
           {/* rutas de autenticacion */}
