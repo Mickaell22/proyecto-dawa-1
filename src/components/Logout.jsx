@@ -1,4 +1,3 @@
-// src/components/Logout.jsx
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../controllers/frontController';

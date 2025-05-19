@@ -1,19 +1,28 @@
-// src/components/Navbar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getCurrentUser } from '../controllers/frontController';
 
 const Navbar = ({ isLoggedIn }) => {
+  const currentUser = getCurrentUser();
+  
   return (
     <header className="navbar">
       <div className="Secciones">
         <ul>
+          {/* Publico */}
           <li><Link to="/">Inicio</Link></li>
-          <li><Link to="/">Estado #1</Link></li>
-          <li><Link to="/">Estado #2</Link></li>
-          <li><Link to="/">Estado #3</Link></li>
-          <li><Link to="/">Estado #4</Link></li>
-          <li><Link to="/">Estado #5</Link></li>
+          <li><Link to="/diagnostico">Diagnóstico</Link></li>
           
+          {/* Repuesto visible solo para logeados */}
+          {isLoggedIn && (
+            <li><Link to="/repuestos">Repuestos</Link></li>
+          )}
+          
+          {/* Facturacion y libre */}
+          <li><Link to="/libre4">Libre 4</Link></li>
+          <li><Link to="/libre5">Libre 5</Link></li>
+          
+          {/* Opciones de autenticación */}
           {isLoggedIn ? (
             <li style={{ float: 'right' }}>
               <Link to="/logout">Cerrar Sesión</Link>
@@ -28,6 +37,7 @@ const Navbar = ({ isLoggedIn }) => {
               </li>
             </>
           )}
+          
         </ul>
       </div>
     </header>

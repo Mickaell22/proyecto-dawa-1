@@ -121,9 +121,11 @@ export const getUserById = async (id) => {
 //        S                      /*  
 //        T                      /*  
 //        O                      /*  
-export const registerRepuesto = async (RepuestoData) => {
+
+// Obtener todos los repuestos
+export const getRepuestos = async () => {
   try {
-    const response = await api.post('/users', RepuestoData);
+    const response = await api.get('/repuestos');
     return {
       success: true,
       data: response.data
@@ -131,12 +133,74 @@ export const registerRepuesto = async (RepuestoData) => {
   } catch (error) {
     return {
       success: false,
-      message: error.response?.data?.message || 'Error al registrar usuario'
+      message: error.response?.data?.message || 'Error al obtener repuestos'
     };
   }
 };
 
+// Obtener un repuesto por ID
+export const getRepuestoById = async (id) => {
+  try {
+    const response = await api.get(`/repuestos/${id}`);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: error.response?.data?.message || 'Error al obtener repuesto'
+    };
+  }
+};
 
+// Crear un nuevo repuesto
+export const registerRepuesto = async (repuestoData) => {
+  try {
+    const response = await api.post('/repuestos', repuestoData);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: error.response?.data?.message || 'Error al registrar repuesto'
+    };
+  }
+};
+
+// Actualizar un repuesto
+export const updateRepuesto = async (id, repuestoData) => {
+  try {
+    const response = await api.put(`/repuestos/${id}`, repuestoData);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: error.response?.data?.message || 'Error al actualizar repuesto'
+    };
+  }
+};
+
+// Eliminar un repuesto
+export const deleteRepuesto = async (id) => {
+  try {
+    const response = await api.delete(`/repuestos/${id}`);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: error.response?.data?.message || 'Error al eliminar repuesto'
+    };
+  }
+};
 
 export default {
   registerUser,
@@ -145,5 +209,10 @@ export default {
   isAuthenticated,
   getCurrentUser,
   getUsers,
-  getUserById
+  getUserById,
+  getRepuestos,
+  getRepuestoById,
+  registerRepuesto,
+  updateRepuesto,
+  deleteRepuesto
 };

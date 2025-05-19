@@ -1,19 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { isAuthenticated } from './controllers/frontController';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { isAuthenticated, getCurrentUser } from './controllers/frontController';
 import './assets/css/estilos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 // Componentes
 import Navbar from './components/Navbar.jsx';
 import Logout from './components/Logout.jsx';
+import Header from './components/Header.jsx';
+import Footer from './components/Footer.jsx';
 
 // Vistas
 import Home from './views/Home.jsx';
 import Login from './views/Login.jsx';
 import Register from './views/Register.jsx';
-import Header from './components/Header.jsx';
-import Footer from './components/Footer.jsx';
+import RepuestosList from './views/RepuestosList.jsx';
+import RepuestoForm from './views/RepuestoForm.jsx';
+
+// Rutas solo para administrrador
+const AdminRoute = ({ children }) => {
+  const currentUser = getCurrentUser();
+  const isAdmin = currentUser?.rol === 'admin';
+  
+  if (!isAuthenticated() || !isAdmin) {
+    // Redirigir a inicio si se cuela un usuario 😡
+    return <Navigate to="/repuestos" replace />;
+  }
+  
+  return children;
+};
+
+// Redirigir al login rutas que se requiere de autenticacion
+const PrivateRoute = ({ children }) => {
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" replace />;
+  }
+  
+  return children;
+};
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -23,7 +48,7 @@ function App() {
     setLoggedIn(isAuthenticated());
   }, []);
   
-  // Funcion para cambiar el título del Header
+  // Funcion para cambiar el titulo
   const changeHeaderTitle = (newTitle) => {
     setHeaderTitle(newTitle);
   };
@@ -35,10 +60,44 @@ function App() {
         <Navbar isLoggedIn={loggedIn} />
         
         <Routes>
+          {/* rutas publicas */}
           <Route path="/" element={<Home changeTitle={changeHeaderTitle} />} />
           <Route path="/login" element={<Login changeTitle={changeHeaderTitle} />} />
           <Route path="/register" element={<Register changeTitle={changeHeaderTitle} />} />
           <Route path="/logout" element={<Logout />} />
+          
+          {/* rutas posbiles, Diagnostico , factura, libre */}
+          <Route path="/diagnostico" element={<Home changeTitle={() => changeHeaderTitle("Diagnóstico")} />} />
+          <Route path="/libre4" element={<Home changeTitle={() => changeHeaderTitle("Libre 4")} />} />
+          <Route path="/libre5" element={<Home changeTitle={() => changeHeaderTitle("Libre 5")} />} />
+          
+          {/* rutas de autenticacion */}
+          <Route 
+            path="/repuestos" 
+            element={
+              <PrivateRoute>
+                <RepuestosList changeTitle={changeHeaderTitle} />
+              </PrivateRoute>
+            } 
+          />
+          
+          {/* rutas administrador */}
+          <Route 
+            path="/repuestos/nuevo" 
+            element={
+              <AdminRoute>
+                <RepuestoForm changeTitle={changeHeaderTitle} />
+              </AdminRoute>
+            } 
+          />
+          <Route 
+            path="/repuestos/editar/:id" 
+            element={
+              <AdminRoute>
+                <RepuestoForm changeTitle={changeHeaderTitle} />
+              </AdminRoute>
+            } 
+          />
         </Routes>
         <Footer />
       </div>
