@@ -38,7 +38,7 @@ const RepuestosList = ({ changeTitle }) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const [selectedRepuesto, setSelectedRepuesto] = useState(null);
   
-  // Estados para búsqueda y filtros
+  // busqueda
   const [busqueda, setBusqueda] = useState('');
   const [filtroProveedor, setFiltroProveedor] = useState('');
   const [filtroCategoria, setFiltroCategoria] = useState('');
@@ -65,7 +65,6 @@ const RepuestosList = ({ changeTitle }) => {
         setRepuestos(repuestosData);
         setRepuestosFiltrados(repuestosData);
         
-        // Extraer proveedores y categorías únicos para los filtros
         const proveedoresUnicos = [...new Set(repuestosData
           .map(r => r.proveedor)
           .filter(p => p && p.trim() !== ''))
@@ -88,11 +87,11 @@ const RepuestosList = ({ changeTitle }) => {
     }
   };
 
-  // Función para filtrar repuestos
+  // funcion para filtrar
   useEffect(() => {
     let repuestosFiltrados = repuestos;
 
-    // Filtrar por búsqueda
+    // busqueda
     if (busqueda) {
       const terminoBusqueda = busqueda.toLowerCase();
       repuestosFiltrados = repuestosFiltrados.filter(repuesto =>
@@ -158,7 +157,7 @@ const RepuestosList = ({ changeTitle }) => {
 
   return (
     <Container className="mt-4">
-      {/* Barra de búsqueda y filtros */}
+      {/* busqueda y filtros */}
       <Row className="mb-3 align-items-end">
         <Col md={8}>
           <Row>
@@ -207,7 +206,7 @@ const RepuestosList = ({ changeTitle }) => {
           
         </Col>
         
-        {/* Botón nuevo - solo para admin */}
+        {/* btn nuevo */}
         {isAdmin && (
           <Col md={4} className="text-end">
             <Link to="/repuestos/nuevo" className="btn btn-primary">
