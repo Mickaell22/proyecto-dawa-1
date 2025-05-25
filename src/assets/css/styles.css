@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    width: 100%;
+    border-radius: 5px;
+    font-family: Verdana;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 17px 17px 34px #000;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-family: Verdana;
+    font-size: 18px;
+}
+
+.form label {
+    display: block;
+    margin: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border-bottom-color: darkcyan;
+    border-bottom-width: 2px;
+    font-family: Verdana;
+    height: 40px;
+}
+
+textarea {
+    height: 100px;
+}
+
+.button {
+    height: 45px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+fieldset {
+    text-align: center;
+    display: block;
+    width: 90%;
+    margin: 20px;
+    border-color: darkcyan;
+}
+
+legend {
+    text-align: justify;
+    background-color: darkcyan;
+    border-radius: 10px;
+    color: white;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.error {
+    color: red;
+    display: block;
+}
+
+@media (max-width: 500px) {
+    .form {
+        padding: 10px;
+        box-shadow: 17px 13px 20px #000;
+    }
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.custom-table th {
+  background-color: darkcyan;
+  color: white;
+  text-align: left;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+.custom-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #e0f7f7;
+}
+
+.custom-table button {
+  background-color: crimson;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.custom-table button:hover {
+  background-color: darkred;
+}

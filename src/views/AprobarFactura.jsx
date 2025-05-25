@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import {
   Table,
   Button,
@@ -12,29 +12,28 @@ import {
   Typography,
   CircularProgress,
 } from "@mui/material";
+import TaskIcon from "@mui/icons-material/Task";
 import axios from "axios";
-import DescriptionIcon from "@mui/icons-material/Description";
-import { Link } from "react-router-dom";
-import Header from "../components/Header.jsx";
-import Footer from "../components/Footer.jsx";
-import Navbar from "../components/Navbar.jsx";
 
-function Facturas() {
-  //Factura: id, cliente, fecha, valor, activa?, acciones
-  //detallesFcatura: Nombre, Precio, Cantidad, Total
-
-  const [ordenes, setOrdenes] = useState([]);
+const AprobarFactura = () => {
+  const url = "http://localhost:3300/api/facturas/default";
+  const [ordenesSinAprobar, setOrdenesSinAprobar] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState();
-  const url = "http://localhost:3300/api/facturas";
 
   useEffect(() => {
+    fetchFacturas();
+  }, []);
+
+  const fetchFacturas = () => {
+    setCargando(true);
     axios
       .get(url)
       .then((response) => {
         console.log("Respuesta del API:", response.data);
         if (response.data.success) {
-          setOrdenes(response.data.data);
+          setOrdenesSinAprobar(response.data.data);
+          setError(null);
         } else {
           setError("Error en respuesta del API");
         }
@@ -45,7 +44,27 @@ function Facturas() {
       .finally(() => {
         setCargando(false);
       });
-  }, []);
+  };
+
+  const aprobar = (id) => {
+    //me tumba el mysql si intento aprobar una factura ya aprobada
+    console.log("Enviando id de factura:", id);
+    axios
+      .put(`http://localhost:3300/api/facturas/aprobar/${id}`)
+      .then((response) => {
+        console.log("Factura aprobada:", response.data);
+        alert("Factura aprobada con éxito");
+        fetchFacturas(); //recargar pagina y que asi no se pueda tumbar el servidor
+      })
+      .catch((error) => {
+        console.error("Error al aprobar la factura:", error);
+        if (error.response) {
+          console.error("Datos de respuesta:", error.response.data);
+          console.error("Código de estado:", error.response.status);
+        }
+        alert("Error al enviar la factura");
+      });
+  };
 
   if (cargando) return <CircularProgress />;
   if (error) return <Alert>{error}</Alert>;
@@ -53,7 +72,7 @@ function Facturas() {
   return (
     <div style={{ padding: "2rem" }}>
       <Typography variant="h5" gutterBottom>
-        Facturas del cliente
+        Facturas sin aprobar
       </Typography>
       <TableContainer component={Paper} elevation={3}>
         <Table>
@@ -69,7 +88,7 @@ function Facturas() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {ordenes.map((fct) => (
+            {ordenesSinAprobar.map((fct) => (
               <TableRow key={fct.id_order}>
                 <TableCell align="center">{fct.id_order}</TableCell>
                 <TableCell align="center">{fct.cl_cedula}</TableCell>
@@ -80,15 +99,19 @@ function Facturas() {
                   {fct.aprobado ? "Si" : "No"}
                 </TableCell>
                 <TableCell align="center">
-                  <Link to={`/detalles/${fct.id_order}`}>
-                    <Button
-                      variant="contained"
-                      size="small"
-                      endIcon={<DescriptionIcon />}
-                    >
-                      Ver detalles
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    color="success"
+                    className="button"
+                    endIcon={<TaskIcon />}
+                    type="button"
+                    onClick={() => {
+                      aprobar(fct.id_order);
+                    }}
+                  >
+                    Aprobar
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
@@ -97,6 +120,6 @@ function Facturas() {
       </TableContainer>
     </div>
   );
-}
+};
 
-export default Facturas;
+export default AprobarFactura;
