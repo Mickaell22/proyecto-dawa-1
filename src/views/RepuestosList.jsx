@@ -15,7 +15,10 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
+  Input,
+  InputGroup,
+  InputGroupText
 } from 'reactstrap';
 
 const RepuestosList = ({ changeTitle }) => {
@@ -28,11 +31,19 @@ const RepuestosList = ({ changeTitle }) => {
   }, [changeTitle]);
 
   const [repuestos, setRepuestos] = useState([]);
+  const [repuestosFiltrados, setRepuestosFiltrados] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [deleteModal, setDeleteModal] = useState(false);
   const [selectedRepuesto, setSelectedRepuesto] = useState(null);
+  
+  // Estados para búsqueda y filtros
+  const [busqueda, setBusqueda] = useState('');
+  const [filtroProveedor, setFiltroProveedor] = useState('');
+  const [filtroCategoria, setFiltroCategoria] = useState('');
+  const [proveedores, setProveedores] = useState([]);
+  const [categorias, setCategorias] = useState([]);
   
   // confirmar admin
   const currentUser = getCurrentUser();
@@ -50,7 +61,23 @@ const RepuestosList = ({ changeTitle }) => {
       const result = await getRepuestos();
       
       if (result.success && result.data) {
-        setRepuestos(result.data.data || []);
+        const repuestosData = result.data.data || [];
+        setRepuestos(repuestosData);
+        setRepuestosFiltrados(repuestosData);
+        
+        // Extraer proveedores y categorías únicos para los filtros
+        const proveedoresUnicos = [...new Set(repuestosData
+          .map(r => r.proveedor)
+          .filter(p => p && p.trim() !== ''))
+        ].sort();
+        
+        const categoriasUnicas = [...new Set(repuestosData
+          .map(r => r.categoria)
+          .filter(c => c && c.trim() !== ''))
+        ].sort();
+        
+        setProveedores(proveedoresUnicos);
+        setCategorias(categoriasUnicas);
       } else {
         setError(result.message || 'Error al cargar repuestos');
       }
@@ -60,6 +87,40 @@ const RepuestosList = ({ changeTitle }) => {
       setLoading(false);
     }
   };
+
+  // Función para filtrar repuestos
+  useEffect(() => {
+    let repuestosFiltrados = repuestos;
+
+    // Filtrar por búsqueda
+    if (busqueda) {
+      const terminoBusqueda = busqueda.toLowerCase();
+      repuestosFiltrados = repuestosFiltrados.filter(repuesto =>
+        repuesto.nombre.toLowerCase().includes(terminoBusqueda) ||
+        (repuesto.proveedor && repuesto.proveedor.toLowerCase().includes(terminoBusqueda)) ||
+        (repuesto.categoria && repuesto.categoria.toLowerCase().includes(terminoBusqueda)) ||
+        (repuesto.ubicacion && repuesto.ubicacion.toLowerCase().includes(terminoBusqueda))
+      );
+    }
+
+    // Filtrar por proveedor
+    if (filtroProveedor) {
+      repuestosFiltrados = repuestosFiltrados.filter(repuesto =>
+        repuesto.proveedor === filtroProveedor
+      );
+    }
+
+    // Filtrar por categoría
+    if (filtroCategoria) {
+      repuestosFiltrados = repuestosFiltrados.filter(repuesto =>
+        repuesto.categoria === filtroCategoria
+      );
+    }
+
+    setRepuestosFiltrados(repuestosFiltrados);
+  }, [repuestos, busqueda, filtroProveedor, filtroCategoria]);
+
+
 
   //modal
   const toggleDeleteModal = () => {
@@ -97,16 +158,64 @@ const RepuestosList = ({ changeTitle }) => {
 
   return (
     <Container className="mt-4">
-      {/* nuevo - solo para admin */}
-      {isAdmin && (
-        <Row className="mb-3">
-          <Col>
+      {/* Barra de búsqueda y filtros */}
+      <Row className="mb-3 align-items-end">
+        <Col md={8}>
+          <Row>
+            <Col md={6}>
+              <InputGroup>
+                <InputGroupText>
+                  <i className="fas fa-search"></i>
+                </InputGroupText>
+                <Input
+                  type="text"
+                  placeholder="Buscar repuestos..."
+                  value={busqueda}
+                  onChange={(e) => setBusqueda(e.target.value)}
+                />
+              </InputGroup>
+            </Col>
+            <Col md={3}>
+              <Input
+                type="select"
+                value={filtroProveedor}
+                onChange={(e) => setFiltroProveedor(e.target.value)}
+              >
+                <option value="">Todos los proveedores</option>
+                {proveedores.map(proveedor => (
+                  <option key={proveedor} value={proveedor}>
+                    {proveedor}
+                  </option>
+                ))}
+              </Input>
+            </Col>
+            <Col md={3}>
+              <Input
+                type="select"
+                value={filtroCategoria}
+                onChange={(e) => setFiltroCategoria(e.target.value)}
+              >
+                <option value="">Todas las categorías</option>
+                {categorias.map(categoria => (
+                  <option key={categoria} value={categoria}>
+                    {categoria}
+                  </option>
+                ))}
+              </Input>
+            </Col>
+          </Row>
+          
+        </Col>
+        
+        {/* Botón nuevo - solo para admin */}
+        {isAdmin && (
+          <Col md={4} className="text-end">
             <Link to="/repuestos/nuevo" className="btn btn-primary">
               Nuevo Repuesto
             </Link>
           </Col>
-        </Row>
-      )}
+        )}
+      </Row>
       
       {error && <Alert color="danger">{error}</Alert>}
       {success && <Alert color="success">{success}</Alert>}
@@ -121,10 +230,16 @@ const RepuestosList = ({ changeTitle }) => {
               <Spinner color="primary" />
               <p className="mt-2">Cargando repuestos...</p>
             </div>
-          ) : repuestos.length === 0 ? (
+          ) : repuestosFiltrados.length === 0 ? (
             <Alert color="info">
-              No hay repuestos disponibles. 
-              {isAdmin && '¡Agrega uno nuevo!'}
+              {repuestos.length === 0 ? (
+                <>
+                  No hay repuestos disponibles. 
+                  {isAdmin && ' ¡Agrega uno nuevo!'}
+                </>
+              ) : (
+                'No se encontraron repuestos con los filtros aplicados.'
+              )}
             </Alert>
           ) : (
             <Table responsive hover striped>
@@ -141,7 +256,7 @@ const RepuestosList = ({ changeTitle }) => {
                 </tr>
               </thead>
               <tbody>
-                {repuestos.map((repuesto) => (
+                {repuestosFiltrados.map((repuesto) => (
                   <tr key={repuesto.id}>
                     <td>{repuesto.codigo}</td>
                     <td>{repuesto.nombre}</td>

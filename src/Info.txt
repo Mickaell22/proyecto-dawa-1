@@ -14,3 +14,6 @@ npm install react-router-dom
 npm start
 
 npm install react-router-dom reactstrap bootstrap axios
+
+instlar material UI
+npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
