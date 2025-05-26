@@ -26,6 +26,7 @@ import Tabla from "./views/Tabla.jsx";
 import DetallesFactura from "./views/DetallesFactura.jsx";
 import FormularioFacturas from "./views/FormFactura.jsx";
 import AprobarFactura from "./views/AprobarFactura.jsx";
+import SubMenuFacturas from "./views/SubMenuFactura.jsx";
 
 // Rutas solo para administrrador
 const AdminRoute = ({ children }) => {
@@ -92,7 +93,7 @@ function App() {
           />
           <Route
             path="/factura"
-            element={<Tabla changeTitle={() => changeHeaderTitle("Factura")} />}
+            element={<SubMenuFacturas changeTitle={() => changeHeaderTitle("Factura")} />}
           />
           <Route
             path="/libre5"
@@ -125,6 +126,10 @@ function App() {
                 <RepuestoForm changeTitle={changeHeaderTitle} />
               </AdminRoute>
             }
+          />
+          <Route
+            path="/facturas"
+            element={<Tabla changeTitle={changeHeaderTitle} />}
           />
           <Route
             path="/factura/crear"
