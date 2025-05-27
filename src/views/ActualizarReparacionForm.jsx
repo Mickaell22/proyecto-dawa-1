@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
 function ActualizarReparacionForm(props) {
   return (
-    <div>ActualizarReparacionForm</div>
-  )
+    <div>
+      {/* repacionesRoutes.put( // "/reparaciones/actualizar/:id", //
+      actualizarEstadoReparacion // ); */}
+      
+    </div>
+  );
 }
 
-export default ActualizarReparacionForm
+export default ActualizarReparacionForm;

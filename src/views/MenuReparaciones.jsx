@@ -9,12 +9,6 @@ import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 
 const MenuReparaciones = () => {
-//   repacionesRoutes.post("/reparaciones/crear", crearReparacion);
-//   repacionesRoutes.put(
-//     "/reparaciones/actualizar/:id",
-//     actualizarEstadoReparacion
-//   );
-
   return (
     <div className="submenu-container">
       <div>

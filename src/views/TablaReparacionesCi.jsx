@@ -37,7 +37,7 @@ function TablaReparacionesCi(props) {
       .get(`http://localhost:3300/api/reparaciones/cliente/${cajaBusqueda.ci}`)
       .then((response) => {
         console.log("Datos recibidos:", response.data);
-        setDatos(response.data);
+        setDatos(response.data.data);
         setBanderaDatos(true);
       })
       .catch((error) => {

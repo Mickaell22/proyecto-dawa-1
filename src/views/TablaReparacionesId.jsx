@@ -37,7 +37,7 @@ function TablaReparacionesId() {
       .get(`http://localhost:3300/api/reparaciones/${cajaBusqueda.id}`)
       .then((response) => {
         console.log("Datos de la reparación:", response.data);
-        setDatos(response.data);
+        setDatos(response.data.data);
         setBanderaDatos(true);
       })
       .catch((error) => {

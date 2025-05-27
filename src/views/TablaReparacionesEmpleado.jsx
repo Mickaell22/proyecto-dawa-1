@@ -13,8 +13,8 @@ import {
   Typography,
   Fade,
   Box,
+  Input,
 } from "@mui/material";
-import { Input } from "@mui/material";
 import axios from "axios";
 
 function TablaReparacionesEmpleado() {
@@ -39,11 +39,19 @@ function TablaReparacionesEmpleado() {
       )
       .then((response) => {
         console.log("Id empleado:", response.data);
-        setDatos(response.data);
-        setBanderaDatos(true);
+
+        if (Array.isArray(response.data)) {
+          setDatos(response.data);
+          setBanderaDatos(true);
+        } else if (Array.isArray(response.data.data)) {
+          setDatos(response.data.data);
+          setBanderaDatos(true);
+        } else {
+          alert("La respuesta no contiene datos válidos.");
+        }
       })
       .catch((error) => {
-        console.error("Error al realizar la busqueda:", error);
+        console.error("Error al realizar la búsqueda:", error);
         if (error.response) {
           console.error("Datos de respuesta:", error.response.data);
           console.error("Código de estado:", error.response.status);
@@ -61,7 +69,7 @@ function TablaReparacionesEmpleado() {
             id="id_empleado"
             name="id_empleado"
             onChange={handleChange}
-            placeholder="Ingrese el id del empleado para realizar la busqueda"
+            placeholder="Ingrese el id del empleado para realizar la búsqueda"
             sx={{ width: "500px" }}
           />
           <Button
@@ -75,6 +83,7 @@ function TablaReparacionesEmpleado() {
           </Button>
         </div>
       </form>
+
       <Modal
         open={banderaDatos}
         onClose={() => setBanderaDatos(false)}
@@ -136,30 +145,35 @@ function TablaReparacionesEmpleado() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {datos.map((rep) => (
-                    <TableRow key={rep.id}>
-                      <TableCell align="center">{rep.id}</TableCell>
-                      <TableCell align="center">{rep.clienteNombre}</TableCell>
-                      <TableCell align="center">{rep.clienteCedula}</TableCell>
-                      <TableCell align="center">
-                        {rep.clienteTelefono}
-                      </TableCell>
-                      <TableCell align="center">{rep.equipo}</TableCell>
-                      <TableCell align="center">
-                        {rep.problemaReportado}
-                      </TableCell>
-                      <TableCell align="center">{rep.fechaIngreso}</TableCell>
-                      <TableCell align="center">{rep.estado}</TableCell>
-                      <TableCell align="center">{rep.tecnicoId}</TableCell>
-                      <TableCell align="center">
-                        {rep.fechaEntregaEstimada}
-                      </TableCell>
-                      <TableCell align="center">
-                        {rep.fechaEntregaReal}
-                      </TableCell>
-                      <TableCell align="center">{rep.ordenId}</TableCell>
-                    </TableRow>
-                  ))}
+                  {Array.isArray(datos) &&
+                    datos.map((rep, index) => (
+                      <TableRow key={rep.id || index}>
+                        <TableCell align="center">{rep.id}</TableCell>
+                        <TableCell align="center">
+                          {rep.clienteNombre}
+                        </TableCell>
+                        <TableCell align="center">
+                          {rep.clienteCedula}
+                        </TableCell>
+                        <TableCell align="center">
+                          {rep.clienteTelefono}
+                        </TableCell>
+                        <TableCell align="center">{rep.equipo}</TableCell>
+                        <TableCell align="center">
+                          {rep.problemaReportado}
+                        </TableCell>
+                        <TableCell align="center">{rep.fechaIngreso}</TableCell>
+                        <TableCell align="center">{rep.estado}</TableCell>
+                        <TableCell align="center">{rep.tecnicoId}</TableCell>
+                        <TableCell align="center">
+                          {rep.fechaEntregaEstimada}
+                        </TableCell>
+                        <TableCell align="center">
+                          {rep.fechaEntregaReal || "Sin entregar"}
+                        </TableCell>
+                        <TableCell align="center">{rep.ordenId}</TableCell>
+                      </TableRow>
+                    ))}
                 </TableBody>
               </Table>
             </TableContainer>

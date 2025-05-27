@@ -72,8 +72,8 @@ function Facturas() {
             {ordenes.map((fct) => (
               <TableRow key={fct.id_order}>
                 <TableCell align="center">{fct.id_order}</TableCell>
-                <TableCell align="center">{fct.cl_cedula}</TableCell>
                 <TableCell align="center">{fct.cl_nombre}</TableCell>
+                <TableCell align="center">{fct.cl_cedula}</TableCell>
                 <TableCell align="center">{fct.emitida}</TableCell>
                 <TableCell align="center">{fct.total}</TableCell>
                 <TableCell align="center">
