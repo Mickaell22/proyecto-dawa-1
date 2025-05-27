@@ -109,7 +109,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra horizontalmente el contenido */
+  align-items: center; /* Centra horizontalmente */
   gap: 24px;
   padding: 20px;
   box-sizing: border-box;
