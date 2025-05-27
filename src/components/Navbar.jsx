@@ -11,7 +11,7 @@ const Navbar = ({ isLoggedIn }) => {
         <ul>
           {/* Publico */}
           <li><Link to="/">Inicio</Link></li>
-          <li><Link to="/diagnostico">Diagnóstico</Link></li>
+          <li><Link to="/reparaciones">Reparaciones</Link></li>
           
           {/* Repuesto visible solo para logeados */}
           {isLoggedIn && (

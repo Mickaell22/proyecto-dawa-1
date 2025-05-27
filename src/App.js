@@ -27,6 +27,14 @@ import DetallesFactura from "./views/DetallesFactura.jsx";
 import FormularioFacturas from "./views/FormFactura.jsx";
 import AprobarFactura from "./views/AprobarFactura.jsx";
 import SubMenuFacturas from "./views/SubMenuFactura.jsx";
+//vistas de reparaciones
+import MenuReparaciones from "./views/MenuReparaciones.jsx";
+import TablaReparacionesCi from "./views/TablaReparacionesCi.jsx";
+import TablaReparacionesId from "./views/TablaReparacionesId.jsx";
+import TablaReparaciones from "./views/TablaReparaciones.jsx";
+import ReparacionForm from "./views/ReparacionForm.jsx";
+import ActualizarReparacionForm from "./views/ActualizarReparacionForm.jsx";
+import TablaReparacionesEmpleado from "./views/TablaReparacionesEmpleado.jsx";
 
 // Rutas solo para administrrador
 const AdminRoute = ({ children }) => {
@@ -86,18 +94,32 @@ function App() {
 
           {/* rutas posbiles, Diagnostico , factura, libre */}
           <Route
-            path="/diagnostico"
+            path="/reparaciones"
             element={
-              <Home changeTitle={() => changeHeaderTitle("Diagnóstico")} />
+              <MenuReparaciones
+                changeTitle={() => changeHeaderTitle("Reparaciones")}
+              />
             }
           />
           <Route
             path="/factura"
-            element={<SubMenuFacturas changeTitle={() => changeHeaderTitle("Factura")} />}
+            element={
+              <SubMenuFacturas
+                changeTitle={() => changeHeaderTitle("Factura")}
+              />
+            }
           />
           <Route
             path="/libre5"
             element={<Home changeTitle={() => changeHeaderTitle("Libre 5")} />}
+          />
+          <Route
+            path="/reparaciones/cliente"
+            element={<TablaReparacionesCi changeTitle={changeHeaderTitle} />}
+          />
+          <Route
+            path="/reparacion"
+            element={<TablaReparacionesId changeTitle={changeHeaderTitle} />}
           />
 
           {/* rutas de autenticacion */}
@@ -155,6 +177,38 @@ function App() {
               </AdminRoute>
             }
           ></Route>
+          <Route
+            path="/reparaciones/todas"
+            element={
+              <AdminRoute>
+                <TablaReparaciones changeTitle={changeHeaderTitle} />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/reparaciones/empleado"
+            element={
+              <AdminRoute>
+                <TablaReparacionesEmpleado changeTitle={changeHeaderTitle} />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/reparaciones/crear"
+            element={
+              <AdminRoute>
+                <ReparacionForm changeTitle={changeHeaderTitle} />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/reparaciones/actualizar"
+            element={
+              <AdminRoute>
+                <ActualizarReparacionForm changeTitle={changeHeaderTitle} />
+              </AdminRoute>
+            }
+          />
         </Routes>
         <Footer />
       </div>
