@@ -9,12 +9,6 @@ import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 
 const MenuReparaciones = () => {
-//   repacionesRoutes.get("/reparaciones/cliente/:ci", getRepacionesPorCI);
-//   repacionesRoutes.get(
-//     "/reparaciones/empleado/:id_empleado",
-//     getRepacionesPorEmpleadoId
-//   );
-//   repacionesRoutes.get("/reparaciones/:id", getReparacionPorId);
 //   repacionesRoutes.post("/reparaciones/crear", crearReparacion);
 //   repacionesRoutes.put(
 //     "/reparaciones/actualizar/:id",
