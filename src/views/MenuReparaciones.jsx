@@ -61,7 +61,7 @@ const MenuReparaciones = () => {
             Obtener todas las reparaciones
           </Button>
         </Link>
-        <Link to={"/reparaciones/actualizar"}>
+        <Link to={"/reparaciones/empleado"}>
           <Button
             variant="contained"
             color="info"
