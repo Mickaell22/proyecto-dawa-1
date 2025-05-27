@@ -114,178 +114,180 @@ function ReparacionForm() {
 
   return (
     <div>
-      <form className="form" onSubmit={handleSubmit}>
-        <fieldset>
-          <legend>Datos del Cliente</legend>
-          <div className="form-group">
-            <label htmlFor="cl_nombre">Nombres</label>
-            <Input
-              id="cl_nombre"
-              name="cl_nombre"
-              onChange={handleChange}
-              placeholder="Ingrese los nombres del cliente"
-              fullWidth
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="cl_cedula">Cédula</label>
-            <Input
-              id="cl_cedula"
-              name="cl_cedula"
-              onChange={handleChange}
-              placeholder="Ingrese el número de cédula"
-              fullWidth
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="cl_telefono">Teléfono</label>
-            <Input
-              id="cl_telefono"
-              name="cl_telefono"
-              onChange={handleChange}
-              placeholder="Ingrese el número de teléfono"
-              fullWidth
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="equipo">Equipo:</label>
-            <Input
-              id="equipo"
-              name="equipo"
-              onChange={handleChange}
-              placeholder="Ingrese la marca y el modelo de su equipo"
-              fullWidth
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="problema">Problema reportado:</label>
-            <Input
-              id="problema"
-              name="problema"
-              onChange={handleChange}
-              placeholder="Descripcion del problema"
-              fullWidth
-            />
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>Datos del Tecnico</legend>
-          <div className="form-group">
-            <label htmlFor="tecnicoId">Id del tecnico:</label>
-            <Input
-              id="tecnicoId"
-              name="tecnicoId"
-              value={tecnicoSeleccionado?.id || ""}
-              fullWidth
-              disabled
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="nombre">Nombre</label>
-            <Input
-              id="nombre"
-              name="nombre"
-              disabled
-              value={tecnicoSeleccionado?.nombre || ""}
-              fullWidth
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="cedula">Cédula</label>
-            <Input
-              id="cedula"
-              name="cedula"
-              disabled
-              value={tecnicoSeleccionado?.cedula || ""}
-              fullWidth
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="telefono">Teléfono</label>
-            <Input
-              id="telefono"
-              value={tecnicoSeleccionado?.telefono || ""}
-              name="telefono"
-              disabled
-              fullWidth
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="especialidad">Especialidad</label>
-            <Input
-              id="especialidad"
-              name="especialidad"
-              disabled
-              value={tecnicoSeleccionado?.especialidad || ""}
-              fullWidth
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="estado">Estado:</label>
-            <Input
-              id="estado"
-              name="estado"
-              disabled
-              value={tecnicoSeleccionado?.estado || ""}
-              fullWidth
-            />
-          </div>
-        </fieldset>
-        <Button
-          onClick={() => {
-            setBanderaModalTecnico(true);
-          }}
-          color="info"
-          variant="contained"
-          className="button"
-        >
-          Seleccionar tecnico
-        </Button>
-        <fieldset>
-          <legend>Informacion de la orden relacionada</legend>
-          <div className="form-group">
-            <label htmlFor="ordenId">Id de la orden:</label>
-            <Input
-              id="ordenId"
-              name="ordenId"
-              value={ordenSeleccionada?.id_order || ""}
-              fullWidth
-              disabled
-            />
-          </div>
-        </fieldset>
-        <Button
-          onClick={() => {
-            setBanderaModalOrden(true);
-          }}
-          color="info"
-          variant="contained"
-          className="button"
-        >
-          Seleccionar orden relacionada
-        </Button>
-        <fieldset>
-          <div className="form-group">
-            <label htmlFor="fechaEntregaEst">Fecha de entrega estimada</label>
-            <Input
-              type="date"
-              id="fechaEntregaEst"
-              name="fechaEntregaEst"
-              onChange={handleChange}
-              fullWidth
-            />
-          </div>
-        </fieldset>
-        <Button
-          color="success"
-          variant="contained"
-          className="button"
-          endIcon={<SaveIcon />}
-          type="submit"
-        >
-          Registrar Reparacion
-        </Button>
-      </form>
+      <div className="reparacion-form">
+        <form className="form" onSubmit={handleSubmit}>
+          <fieldset>
+            <legend>Datos del Cliente</legend>
+            <div className="form-group">
+              <label htmlFor="cl_nombre">Nombres</label>
+              <Input
+                id="cl_nombre"
+                name="cl_nombre"
+                onChange={handleChange}
+                placeholder="Ingrese los nombres del cliente"
+                fullWidth
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="cl_cedula">Cédula</label>
+              <Input
+                id="cl_cedula"
+                name="cl_cedula"
+                onChange={handleChange}
+                placeholder="Ingrese el número de cédula"
+                fullWidth
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="cl_telefono">Teléfono</label>
+              <Input
+                id="cl_telefono"
+                name="cl_telefono"
+                onChange={handleChange}
+                placeholder="Ingrese el número de teléfono"
+                fullWidth
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="equipo">Equipo:</label>
+              <Input
+                id="equipo"
+                name="equipo"
+                onChange={handleChange}
+                placeholder="Ingrese la marca y el modelo de su equipo"
+                fullWidth
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="problema">Problema reportado:</label>
+              <Input
+                id="problema"
+                name="problema"
+                onChange={handleChange}
+                placeholder="Descripcion del problema"
+                fullWidth
+              />
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Datos del Tecnico</legend>
+            <div className="form-group">
+              <label htmlFor="tecnicoId">Id del tecnico:</label>
+              <Input
+                id="tecnicoId"
+                name="tecnicoId"
+                value={tecnicoSeleccionado?.id || ""}
+                fullWidth
+                disabled
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="nombre">Nombre</label>
+              <Input
+                id="nombre"
+                name="nombre"
+                disabled
+                value={tecnicoSeleccionado?.nombre || ""}
+                fullWidth
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="cedula">Cédula</label>
+              <Input
+                id="cedula"
+                name="cedula"
+                disabled
+                value={tecnicoSeleccionado?.cedula || ""}
+                fullWidth
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="telefono">Teléfono</label>
+              <Input
+                id="telefono"
+                value={tecnicoSeleccionado?.telefono || ""}
+                name="telefono"
+                disabled
+                fullWidth
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="especialidad">Especialidad</label>
+              <Input
+                id="especialidad"
+                name="especialidad"
+                disabled
+                value={tecnicoSeleccionado?.especialidad || ""}
+                fullWidth
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="estado">Estado:</label>
+              <Input
+                id="estado"
+                name="estado"
+                disabled
+                value={tecnicoSeleccionado?.estado || ""}
+                fullWidth
+              />
+            </div>
+          </fieldset>
+          <Button
+            onClick={() => {
+              setBanderaModalTecnico(true);
+            }}
+            color="info"
+            variant="contained"
+            className="button"
+          >
+            Seleccionar tecnico
+          </Button>
+          <fieldset>
+            <legend>Informacion de la orden relacionada</legend>
+            <div className="form-group">
+              <label htmlFor="ordenId">Id de la orden:</label>
+              <Input
+                id="ordenId"
+                name="ordenId"
+                value={ordenSeleccionada?.id_order || ""}
+                fullWidth
+                disabled
+              />
+            </div>
+          </fieldset>
+          <Button
+            onClick={() => {
+              setBanderaModalOrden(true);
+            }}
+            color="info"
+            variant="contained"
+            className="button"
+          >
+            Seleccionar orden relacionada
+          </Button>
+          <fieldset>
+            <div className="form-group">
+              <label htmlFor="fechaEntregaEst">Fecha de entrega estimada</label>
+              <Input
+                type="date"
+                id="fechaEntregaEst"
+                name="fechaEntregaEst"
+                onChange={handleChange}
+                fullWidth
+              />
+            </div>
+          </fieldset>
+          <Button
+            color="success"
+            variant="contained"
+            className="button"
+            endIcon={<SaveIcon />}
+            type="submit"
+          >
+            Registrar Reparacion
+          </Button>
+        </form>
+      </div>
 
       <Modal
         open={banderaModalTecnico}

@@ -16,6 +16,7 @@ import {
   Input,
 } from "@mui/material";
 import axios from "axios";
+import "../assets/css/estilos-troya.css";
 
 function TablaReparacionesEmpleado() {
   const [cajaBusqueda, setCajaBusqueda] = useState({ id_empleado: "" });
@@ -62,27 +63,29 @@ function TablaReparacionesEmpleado() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="id_empleado">ID:</label>
-          <Input
-            id="id_empleado"
-            name="id_empleado"
-            onChange={handleChange}
-            placeholder="Ingrese el id del empleado para realizar la búsqueda"
-            sx={{ width: "500px" }}
-          />
-          <Button
-            variant="contained"
-            color="info"
-            size="small"
-            type="submit"
-            endIcon={<SearchIcon />}
-          >
-            Buscar
-          </Button>
-        </div>
-      </form>
+      <div className="form-wrapper">
+        <form onSubmit={handleSubmit}>
+          <div className="busqueda-container">
+            <label htmlFor="id_empleado">ID:</label>
+            <Input
+              id="id_empleado"
+              name="id_empleado"
+              onChange={handleChange}
+              sx={{ width: "500px" }}
+              placeholder="Ingrese el id del empleado para realizar la búsqueda"
+            />
+            <Button
+              variant="contained"
+              color="info"
+              size="small"
+              type="submit"
+              endIcon={<SearchIcon />}
+            >
+              Buscar
+            </Button>
+          </div>
+        </form>
+      </div>
 
       <Modal
         open={banderaDatos}

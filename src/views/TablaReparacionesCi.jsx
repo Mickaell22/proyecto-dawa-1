@@ -16,6 +16,7 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
+import "../assets/css/estilos-troya.css";
 
 function TablaReparacionesCi(props) {
   const [cajaBusqueda, setCajaBusqueda] = useState({ ci: "" });
@@ -48,27 +49,29 @@ function TablaReparacionesCi(props) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="ci">CI:</label>
-          <Input
-            id="ci"
-            name="ci"
-            onChange={handleChange}
-            placeholder="Ingrese su número de cédula para realizar la búsqueda"
-            sx={{ width: "500px" }}
-          />
-          <Button
-            variant="contained"
-            color="info"
-            size="small"
-            type="submit"
-            endIcon={<SearchIcon />}
-          >
-            Buscar
-          </Button>
-        </div>
-      </form>
+      <div className="form-wrapper">
+        <form onSubmit={handleSubmit}>
+          <div className="busqueda-container">
+            <label htmlFor="ci">CI:</label>
+            <Input
+              id="ci"
+              name="ci"
+              onChange={handleChange}
+              placeholder="Ingrese su número de cédula para realizar la búsqueda"
+              sx={{ width: "500px" }}
+            />
+            <Button
+              variant="contained"
+              color="info"
+              size="small"
+              type="submit"
+              endIcon={<SearchIcon />}
+            >
+              Buscar
+            </Button>
+          </div>
+        </form>
+      </div>
 
       <Modal
         open={banderaDatos}

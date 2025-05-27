@@ -21,6 +21,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import axios from "axios";
+import "../assets/css/estilos-troya.css";
 
 function ActualizarReparacionForm() {
   const [reparacionSeleccionada, setReparacionSeleccionada] = useState();
@@ -90,55 +91,71 @@ function ActualizarReparacionForm() {
       <Typography variant="h5" gutterBottom>
         Reparaciones disponibles
       </Typography>
-      <TableContainer component={Paper} elevation={3}>
-        <Table>
-          <TableHead sx={{ backgroundColor: "gray" }}>
-            <TableRow>
-              <TableCell style={{ color: "white" }}>ID Reparación</TableCell>
-              <TableCell style={{ color: "white" }}>Nombre del Cliente</TableCell>
-              <TableCell style={{ color: "white" }}>Cédula del Cliente</TableCell>
-              <TableCell style={{ color: "white" }}>Teléfono del Cliente</TableCell>
-              <TableCell style={{ color: "white" }}>Equipo</TableCell>
-              <TableCell style={{ color: "white" }}>Problema Reportado</TableCell>
-              <TableCell style={{ color: "white" }}>Fecha Ingreso</TableCell>
-              <TableCell style={{ color: "white" }}>Estado</TableCell>
-              <TableCell style={{ color: "white" }}>Técnico Asignado (ID)</TableCell>
-              <TableCell style={{ color: "white" }}>Fecha Entrega Estimada</TableCell>
-              <TableCell style={{ color: "white" }}>ID Orden</TableCell>
-              <TableCell style={{ color: "white" }}>Acciones</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {reparaciones.map((rep) => (
-              <TableRow key={rep.id}>
-                <TableCell align="center">{rep.id}</TableCell>
-                <TableCell align="center">{rep.clienteNombre}</TableCell>
-                <TableCell align="center">{rep.clienteCedula}</TableCell>
-                <TableCell align="center">{rep.clienteTelefono}</TableCell>
-                <TableCell align="center">{rep.equipo}</TableCell>
-                <TableCell align="center">{rep.problemaReportado}</TableCell>
-                <TableCell align="center">{rep.fechaIngreso}</TableCell>
-                <TableCell align="center">{rep.estado}</TableCell>
-                <TableCell align="center">{rep.tecnicoId}</TableCell>
-                <TableCell align="center">{rep.fechaEntregaEstimada}</TableCell>
-                <TableCell align="center">{rep.ordenId}</TableCell>
-                <TableCell align="center">
-                  <Button
-                    onClick={() => {
-                      setReparacionSeleccionada(rep);
-                      setBanderaModal(true);
-                    }}
-                    variant="contained"
-                    color="primary"
-                  >
-                    Cambiar estado
-                  </Button>
+      <div className="tabla-reparaciones">
+        <TableContainer component={Paper} elevation={3}>
+          <Table>
+            <TableHead sx={{ backgroundColor: "gray" }}>
+              <TableRow>
+                <TableCell style={{ color: "white" }}>ID Reparación</TableCell>
+                <TableCell style={{ color: "white" }}>
+                  Nombre del Cliente
                 </TableCell>
+                <TableCell style={{ color: "white" }}>
+                  Cédula del Cliente
+                </TableCell>
+                <TableCell style={{ color: "white" }}>
+                  Teléfono del Cliente
+                </TableCell>
+                <TableCell style={{ color: "white" }}>Equipo</TableCell>
+                <TableCell style={{ color: "white" }}>
+                  Problema Reportado
+                </TableCell>
+                <TableCell style={{ color: "white" }}>Fecha Ingreso</TableCell>
+                <TableCell style={{ color: "white" }}>Estado</TableCell>
+                <TableCell style={{ color: "white" }}>
+                  Técnico Asignado (ID)
+                </TableCell>
+                <TableCell style={{ color: "white" }}>
+                  Fecha Entrega Estimada
+                </TableCell>
+                <TableCell style={{ color: "white" }}>ID Orden</TableCell>
+                <TableCell style={{ color: "white" }}>Acciones</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {reparaciones.map((rep) => (
+                <TableRow key={rep.id}>
+                  <TableCell align="center">{rep.id}</TableCell>
+                  <TableCell align="center">{rep.clienteNombre}</TableCell>
+                  <TableCell align="center">{rep.clienteCedula}</TableCell>
+                  <TableCell align="center">{rep.clienteTelefono}</TableCell>
+                  <TableCell align="center">{rep.equipo}</TableCell>
+                  <TableCell align="center">{rep.problemaReportado}</TableCell>
+                  <TableCell align="center">{rep.fechaIngreso}</TableCell>
+                  <TableCell align="center">{rep.estado}</TableCell>
+                  <TableCell align="center">{rep.tecnicoId}</TableCell>
+                  <TableCell align="center">
+                    {rep.fechaEntregaEstimada}
+                  </TableCell>
+                  <TableCell align="center">{rep.ordenId}</TableCell>
+                  <TableCell align="center">
+                    <Button
+                      onClick={() => {
+                        setReparacionSeleccionada(rep);
+                        setBanderaModal(true);
+                      }}
+                      variant="contained"
+                      color="primary"
+                    >
+                      Cambiar estado
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
 
       <Modal
         open={banderaModal}
@@ -165,17 +182,45 @@ function ActualizarReparacionForm() {
           >
             <fieldset>
               <legend>Datos del Cliente</legend>
-              <Input disabled fullWidth value={reparacionSeleccionada?.id || ""} />
-              <Input disabled fullWidth value={reparacionSeleccionada?.clienteNombre || ""} />
-              <Input disabled fullWidth value={reparacionSeleccionada?.clienteCedula || ""} />
-              <Input disabled fullWidth value={reparacionSeleccionada?.clienteTelefono || ""} />
+              <Input
+                disabled
+                fullWidth
+                value={reparacionSeleccionada?.id || ""}
+              />
+              <Input
+                disabled
+                fullWidth
+                value={reparacionSeleccionada?.clienteNombre || ""}
+              />
+              <Input
+                disabled
+                fullWidth
+                value={reparacionSeleccionada?.clienteCedula || ""}
+              />
+              <Input
+                disabled
+                fullWidth
+                value={reparacionSeleccionada?.clienteTelefono || ""}
+              />
             </fieldset>
 
             <fieldset style={{ marginTop: "1rem" }}>
               <legend>Datos del Técnico</legend>
-              <Input disabled fullWidth value={reparacionSeleccionada?.tecnicoId || ""} />
-              <Input disabled fullWidth value={reparacionSeleccionada?.equipo || ""} />
-              <Input disabled fullWidth value={reparacionSeleccionada?.problemaReportado || ""} />
+              <Input
+                disabled
+                fullWidth
+                value={reparacionSeleccionada?.tecnicoId || ""}
+              />
+              <Input
+                disabled
+                fullWidth
+                value={reparacionSeleccionada?.equipo || ""}
+              />
+              <Input
+                disabled
+                fullWidth
+                value={reparacionSeleccionada?.problemaReportado || ""}
+              />
             </fieldset>
 
             <FormControl fullWidth margin="normal">
@@ -195,7 +240,11 @@ function ActualizarReparacionForm() {
             </FormControl>
 
             <Box display="flex" justifyContent="flex-end" mt={2}>
-              <Button onClick={actualizarEstado} variant="contained" color="success">
+              <Button
+                onClick={actualizarEstado}
+                variant="contained"
+                color="success"
+              >
                 Guardar Estado
               </Button>
             </Box>
