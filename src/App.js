@@ -43,7 +43,7 @@ const AdminRoute = ({ children }) => {
 
   if (!isAuthenticated() || !isAdmin) {
     // Redirigir a inicio si se cuela un usuario 😡
-    return <Navigate to="/repuestos" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return children;
