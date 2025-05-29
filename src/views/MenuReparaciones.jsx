@@ -109,6 +109,22 @@ const MenuReparaciones = () => {
               Cambiar estado de reparacion
             </Button>
           </Link>
+             <Link to={"/reparaciones/eliminar"}>
+          <Button
+            variant="contained"
+            sx={{
+            backgroundColor: "#d32f2f", // rojo fuerte
+            "&:hover": {
+            backgroundColor: "#b71c1c", // rojo más oscuro al pasar el mouse
+             },
+            }}
+            size="large"
+            className="submenu-button"
+          startIcon={<ChangeCircleIcon />}
+    >
+    Eliminar Reparacion
+  </Button>
+</Link>
         </div>
       </div>
     </div>

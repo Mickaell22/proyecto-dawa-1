@@ -35,8 +35,9 @@ import TablaReparaciones from "./views/TablaReparaciones.jsx";
 import ReparacionForm from "./views/ReparacionForm.jsx";
 import ActualizarReparacionForm from "./views/ActualizarReparacionForm.jsx";
 import TablaReparacionesEmpleado from "./views/TablaReparacionesEmpleado.jsx";
+import EliminarReparacion from "./views/EliminarReparacionForm.jsx";
 
-// Rutas solo para administrrador
+// Rutas solo para administrador
 const AdminRoute = ({ children }) => {
   const currentUser = getCurrentUser();
   const isAdmin = currentUser?.rol === "admin";
@@ -206,6 +207,14 @@ function App() {
             element={
               <AdminRoute>
                 <ActualizarReparacionForm changeTitle={changeHeaderTitle} />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/reparaciones/eliminar"
+            element={
+              <AdminRoute>
+                <EliminarReparacion changeTitle={changeHeaderTitle} />
               </AdminRoute>
             }
           />
